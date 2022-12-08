@@ -13,6 +13,14 @@ flex-direction: column;
 margin: 0;
 background-color: rgb(56, 108, 185);
   }
+
+body{
+    --item-img-width: 25vw;
+    --item-img-height: 15vw;
+    --items-title-height: calc(var(--thumbnails-image-height) * 0.33);
+    --details-image-head-width: 60vw;
+    --details-title-head-height: 50vw;
+}
   
 .class-header-logo{
    display: block;
@@ -27,6 +35,7 @@ background-color: rgb(56, 108, 185);
 .main-class{
    display: flex;
    flex-direction: column;
+   flex-grow: 1;
   }
   
 .section-class-head-photo{
