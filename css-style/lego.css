@@ -15,11 +15,11 @@ background-color: rgb(56, 108, 185);
   }
 
 body{
-    --item-img-width: 25vw;
-    --item-img-height: 15vw;
-    --items-title-height: calc(var(--thumbnails-image-height) * 0.33);
-    --details-image-head-width: 60vw;
-    --details-title-head-height: 50vw;
+    --item-img-width: 35vw;;
+    --item-img-height: 25vw;
+    --items-title-height: calc(var(--item-img-height) * 0.33);
+    --details-image-head-width: 100%; 
+    --details-image-head-height: 100%;
 }
   
 .class-header-logo{
@@ -46,8 +46,8 @@ body{
   }
   
 .details-image-head{
-   width: 100%;
-   height: 100%;
+   width: var(--details-image-head-width);
+   height: var(--details-image-head-height);
   }
   
 .details-title-head{
@@ -66,9 +66,6 @@ body{
    justify-content: space-around;
    padding-left: 0;
    margin: 0;
-   border left: solid 3px black;
-   border right: solid 3px black;
-   border button: solid 3px black;
   }
   
 .li-class-item{
@@ -77,15 +74,22 @@ body{
    border-radius: 25%;
    overflow: clip;
    background-color: white;
+   min-height: calc(var(--item-img-height) + var(--items-title-height));
+   max-width: var(--item-img-width);
+   min-width: var(--item-img-width);
   }
+
+.li-class-item:hover{
+    transform: scale(1.1);
+}
   
 .anchor-class{
-  
+    text-decoration: none;
   }
   
 .item-img{
-   width: 40vw;
-   height: 30vw;
+   width: var(--item-img-width);
+   height: var(--item-img-height);
    display: block;
   }
   
@@ -93,46 +97,44 @@ body{
    display: block;
    text-align: center;
    text-decoration-color: black;
+   height: var(--items-title-height);
   }
   
 @media (min-width: 560px){
 
+body{
+   --item-img-width: 20vw;;
+   --item-img-height: 13vw;
+   --items-title-height: calc(var(--item-img-height) * 0.25);
+   --details-image-head-width: 90%; 
+   --details-image-head-height: 90%;
+ }
 .main-class{
 flex-direction: row;
 justify-content: space-around;
 max-height: 46vw;
-      }
-
-.details-image-head{
-width: 90%;
-height: 90%;
-    } 
+} 
 .ul-class-list{
     order: -1;
     flex-direction: column;
     flex-wrap: nowrap;
-    max-height: 75vw; 
+    max-height: 80vh;
     justify-content: flex-start;
+    list-style: none;
     padding-left: 1.5vh;
     padding-right: 3vh;
     margin-top: 1vh;
     margin-bottom: 0;
     }
-  
-.li-class-item{
-   min-height: 50vh;
-   justify-content: center;
-    }
-      
-.items-title{
- height: 5vh;
-}
 
-.item-img{
-    height: 45vh;
-}
- }   
-  
+.li-class-item{
+flex-direction: column;
+flex-wrap: nowrap;
+min-height: calc(var(--item-img-height) + var(--items-title-height) * 1.5);
+max-width: var(--item-img-width) * 50;
+min-width: var(--item-img-width) * 50;
+    }
+
 @media (min-width:1000px) {
 .main-class{
  flex-direction: row;
@@ -140,10 +142,19 @@ height: 90%;
  background: url(https://img.freepik.com/premium-vector/blue-plastic-construction-block-plate-seamless-pattern-flat-design_87543-980.jpg?w=996);
  max-height: 50vw;
 }
+
+.section-class-head-photo{
+    margin-top: 5vh;
+    margin-right: 5vw;
+}
         
+.ul-class-list{
+    margin-top: 2.5vh;
+    max-height: 86vh;
+}
 .details-image-head{
-        width: 100%;
-        height: 100%;
+        width: 90%;
+        height: 90%;
 }
   
 .details-title-head{
@@ -151,6 +162,7 @@ height: 90%;
 }
 
 .items-title{
+
   font-size: 150%;
 }
   
