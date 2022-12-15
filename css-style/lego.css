@@ -38,6 +38,11 @@ body{
     justify-content: center;
     flex-grow: 1;
 }
+
+.main-class.hidden{
+    justify-content: space-around;
+}
+
 /* Класс Основы */
 .class-section-head{
     display: flex;
@@ -45,6 +50,11 @@ body{
     align-items: center;
     background: url(https://img.freepik.com/premium-vector/blue-plastic-construction-block-plate-seamless-pattern-flat-design_87543-980.jpg?w=996);
 }
+
+.hidden .class-section-head{
+    display: none;
+}
+
 /* Класс рамы */
 .class-div-details-frame{
     position: relative;
@@ -63,6 +73,13 @@ body{
     border: solid 2px black;
     background-color: blanchedalmond;
 }
+
+#button-hidden-x{
+    position: absolute;
+    right: 5vw;
+    top: 3vh;
+}
+
  /* Класс свойств списка миниатюр*/
 .class-ul-list{
     display: flex;
@@ -75,6 +92,11 @@ body{
     margin-top: 3vh;
     text-align: center;
 }
+
+.hidden .class-ul-list{
+    max-height: 80vh;
+}
+
 /* Класс свойств миниатюры */
 .class-li-item{
     border: solid 3px black;
@@ -84,6 +106,7 @@ body{
     min-height: var(--item-mini-img-height) + var(--item-mini-title-height);
     min-width: var(--item-mini-img-width);
     max-width: var(--item-mini-img-width);
+    max-height: var(--item-mini-img-height) + var(--item-mini-title-height);
     background-color: white;
     margin-left: 2vw;
     margin-right: 1vw;
@@ -122,15 +145,15 @@ body{
         --item-mini-title-height: cals(var(--item-mini-img-height) * 0.2);
      }
     
+    .class-header-logo{
+       font-size: 1em;
+    }
 
     .main-class {
         flex-direction: row;
         justify-content: space-around;
     }
-    
-    .class-header-logo{
-       font-size: 1em;
-    }
+
     .class-section-head{
         justify-content: center;
         margin-bottom: 0;
@@ -141,39 +164,25 @@ body{
     }
     
     .class-ul-list{
-        display: block;
-        padding-right: 2vw;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        min-height: 65vh;
+        max-height: 80vh;
         order: -1;
-        justify-content: flex-start;
+        padding-right: 2vw;
     }
 
-
+    .hidden .class-ul-list{
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content:space-around;
+        max-height: 75vh;   
+    }
+  
 }
 
 /* Screen 1000px+ */
 
 @media (min-width: 1000px) {
    
-    body{
-        --details-image-head-width: 62vw;
-        --details-image-head-height: 49vw;
-        --item-mini-img-width: 25vw;
-        --item-mini-img-height: 15vw;
-        --item-mini-title-height: cals(var(--item-mini-img-height) * 0.15);
-     }
-
-    .class-ul-list{
-        display: block;
-        padding-right: 2vw;
-        flex-direction: column;
-        flex-wrap: nowrap;
-        min-height: 75vh;
-        order: -1;
-        justify-content: flex-start;
-    }
+   
 
     .item-mini-title{
         font-size: 150%;
