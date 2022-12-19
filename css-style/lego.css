@@ -49,6 +49,7 @@ body{
     flex-direction: column;
     align-items: center;
     background: url(https://img.freepik.com/premium-vector/blue-plastic-construction-block-plate-seamless-pattern-flat-design_87543-980.jpg?w=996);
+    transition: 5s cubic-bezier(0.215, 0.610, 0.355, 1);
 }
 
 .hidden .class-section-head{
@@ -133,6 +134,11 @@ body{
    text-align: center;
    color: black;
    height: var(--item-mini-title-height);
+}
+
+.is-point{
+    transform: scale(0.001);
+    transition: 0s;
 }
 
 /* Screen 500px+ */
