@@ -1,76 +1,107 @@
-//Task - 1
-let str1 = "apple";
-let str2 = "puppy";
-function colorString(str1,str2){
-  const arStr1 = Array.from(str1);
-  const arStr2 = Array.from(str2);
-  let arResult = [];
-  
-  if(arStr1.length === arStr2.length){
-    arResult = arStr2.map(function(number,index){
-      const arMoment = arStr1.filter(function(number){
-        if(number == arStr2[index])
-        return number;
-      })
-        let colorElement = "";
-        if(number === arStr1[index]){
-          colorElement = "green";
-        }
-        else if(arMoment[0] == arStr2[index]){
-          colorElement = "yellow";
-        }
-        else
-           colorElement = "red";
+const ar1 = [20,-10,333,1000,552,7,-7];
 
-    return colorElement; 
-  }) 
-  }
-  else
-  console.log(-1);
+// Task-1
 
-  return arResult;
-}
-console.log(colorString("pappy","apple"));
-
-//Task - 1 (Option B)
-
-let str3 = "apple";
-let str4 = "puppy";
-function colorString1(str3,str4){
-  const arStr3 = Array.from(str3);
-  const arStr4 = Array.from(str4);
-  let arResult = [];
-  
-  if(arStr3.length === arStr4.length){
-    arResult = arStr4.map(function(number,index){
-      if(arStr3.indexOf(number) === -1){
-        return "red";
-      }
-      else if (arStr3.indexOf(number) != index && arStr3.indexOf(number) > 0){
-        return "yellow";
-      }
-      if(number === arStr3[index]){
-        return "green";
-      }
-    })
-    return arResult;
-  }
+function evenOddSortArray(ar1){
+  const res = ar1.sort(function(e1,e2){
+    if(e1 < 0){
+      e1=-e1;
+    }
+    return e1%2 - e2%2;
+  })
+  return res;
 }
 
-console.log(colorString1("pippy","apple"));
+console.log(`Fucntion Even Odd Sort Array = ${evenOddSortArray(ar1)}`);
 
-//Task - 2
-function getNumbersWithDigitsAmount(digitsAmount,array){
-   let numbersOfDigits = digitsAmount;
-   const res = array.filter(function (number){
-       if (number < 0) {
-         number = -number;
-        }
-       number = String(number);
-       if(numbersOfDigits === number.length){
-        return Number(number);
-       }
-    })
+//Task 2
+
+function oddEvenSort(ar1){
+  const res = ar1.sort(function(e1,e2){
+    if(e1<0){
+      e1 = -e1;
+    }
+    return e2%2 - e1%2;
+  })
+  return res;
+}
+
+console.log(`Function Odd Even Sort Array = ${oddEvenSort(ar1)}`);
+
+//Task 3
+
+function evenAscOddDesc(ar1){
+  const res = ar1.sort(function(e1,e2){
+    let res1;
+    if (e1 % 2 == 0 && e2 % 2 != 0) {         //const ar1 = [20,-10,333,1000,552,7,-7];
+      res1 = -1;                              
+    } else if (e1 % 2 == 0 && e2 % 2 == 0) {  //const ar1 = [20,-10,1000,552,333,7,-7];
+     res1 = e1 - e2;
+    } else if (e1 % 2 !=0 && e2 % 2 !=0) {   
+     res1 = e2 - e1;
+    }
+    return res1;
+  })
+  return res;
+}
+
+console.log(`Even Asc Odd Desc = ${evenAscOddDesc(ar1)}`);
+
+// Task-4 
+
+function getMin(ar1){
+  const res = ar1.reduce(function(e1,e2){
+    if(e1 < e2){
+      return e1;
+    }
+    return e2;
+  })
+  return res;
+}
+
+console.log(`Min = ${getMin(ar1)}`)
+
+//Task-5 
+
+function getMax(ar1){
+  const res = ar1.reduce(function(e1,e2){
+    if(e1 > e2){
+      return e1;
+    }
+    return e2;
+  })
+  return res;
+}
+
+console.log(`Max in array = ${getMax(ar1)}`);
+
+// Task-6
+
+function getAverage(ar1){
+  const total = ar1.reduce(function(e1,cur){
+    return e1 + cur;
+  })
+  return total / ar1.length;
+}
+
+console.log(`Average value of elements in array ${ar1} = ${getAverage(ar1)}`);
+
+//Task-7
+
+function getMinMaxAverage(ar1){
+  let min = ar1[0];
+  let max = ar1[0];
+  let sum = 0;
+  return ar1.reduce(function(res,cur,index){  
+    sum += cur;
+    min = min > cur ? cur : min;
+    max = max < cur ? cur : max;
+    if(index === ar1.length-1){
+      res.push(min,max,sum/ar1.length)
+    }
     return res;
+  },[]);
 }
-console.log(getNumbersWithDigitsAmount(2,[123,34,1,5678,12,98,95,-54,-142]));
+
+console.log(`Get Min Max Average in array = ${getMinMaxAverage(ar1)}`);
+// Сортировка будет менять элементы местами только в том случае,если оно будет выдавать положительный результат
