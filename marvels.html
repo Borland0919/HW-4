@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>marvels-field</title>
+    <link rel="stylesheet" href="style/marvels.css">
+</head>
+<body>
+    <header>
+        <h3 class="logo">Поле Чудес!</h3>
+    </header>
+    <section class="field">
+        <p id="question"></p>
+        <input type="text" onchange="checkWord()" id="word-input" placeholder="Enter word">
+        <p id="letters-remained"></p>
+        <input type="text" minlength="1" maxlength="1" onchange="processLetter()" id="letter-input" placeholder="Enter 1 letter">
+        <button id="guess-button" onclick="takeChance()">Угадать слово</button>
+    </section>
+    <section class="word">
+     
+    </section>
+    <section class="result">
+        <p id="result-message"></p>
+        <button onclick="startGame()" id="play-again">Следующий вопрос</button>
+    </section>
+    <script src="src/marvels.js"></script>
+</body>
+</html>
