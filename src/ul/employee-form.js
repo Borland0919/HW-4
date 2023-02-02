@@ -67,7 +67,7 @@ constructor(idParentForm) {
         const pattern = /^[a-zA-Z]+$/;
         const iscontrolNameValid = pattern.test(inputName.value);
         if(!iscontrolNameValid){
-            alert(`YOU CAN ENTER ONLY LETTERS IN FIlD "NAME"`);
+            alert(`Error-please,use only letters "NAME"`);
         inputName.value ='';
         return false;
      };
