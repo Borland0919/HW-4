@@ -73,16 +73,16 @@ constructor(idParentForm) {
      };
     }
     addFormHandler(handlerFun){
-        this.#formElement.addEventListener( "submit", (event) => {
-            event.preventDefault();
-            const control = this.checkInputDate();
-            if(control === true){
-                const employeeData = Array.from(this.#inputElements).reduce((res, inputElement) => {
-               res[inputElement.name] = inputElement.value;
-               return res;
-            }, {});
-            handlerFun(employeeData);
-         }
-        })
-    }
+    this.#formElement.addEventListener( "submit", (event) => {
+        event.preventDefault();
+        let control = this.checkInputDate();
+        if(control = true){
+         const employeeData = Array.from(this.#inputElements).reduce((res, inputElement) => {
+         res[inputElement.name] = inputElement.value;
+         return res;
+        }, {});
+        handlerFun(employeeData);
+     }
+   })
+  }
 }
