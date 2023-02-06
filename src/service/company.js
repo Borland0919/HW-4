@@ -1,61 +1,71 @@
-export function createEmployee(id, name, birthYear, salary, city, country) {
-    return { id, name, birthYear, salary, address: { city, country }}
+import { employeeConfig } from "../config/employee-config.js";
+import { getRandomNumber } from "../utils/random.js";
+
+
+export function createEmployee(name, birthYear, salary, city, country) {
+  return { name, birthYear, salary, address: { city, country } }
 }
-// 1
 export class Company {
-#employees;
-  
-constructor(){
-  this.#employees = {};
-}
-  
-// 1
-addEmplpoyee(empl){
-   if(this.#employees[empl.id]){
-      console.log("Error,this Employee in Company List");
-      return false;
-   }
-   else{
-     this.#employees[empl.id] = empl;
-     console.log("Employee edit")
-     return true;
-   }
-}
-// 2
-removeEmployee(id){
-  if(this.#employees[id]){
-      delete this.#employees[id];
-      return true;
-   }
-   else{
-      console.log("Error,Employee with this ID not found");
-      return false;
-   }
-}
-//3
-getEmployeesCountry(country){
-  return Object.values(this.#employees).filter(empl => empl.address.country===country);
-}
-//4
-getEmployeesByAge(age){
-  const yearOfBirthday = new Date().getFullYear() - age;
-  return Object.values(this.#employees).filter(empl => empl.birthYear === yearOfBirthday);
-}
-//5
-getEmployeesNySalary(salaryFrom, salaryTo){
-  return Object.values(this.#employees).filter(empl => {
-    if(salaryFrom <= 0 && salaryTo <= 0){
-      return empl.salary;
+  #employees //object key: <id value>, value: reference to Employee object
+  constructor() {
+    this.#employees = {};
+  }
+  addEmployee(empl) {
+    const res = checkEmployeeData(empl);
+    const id = this.#getId();
+    if (res === '') {
+
+      empl.id = id;
+      this.#employees[id] = empl;
     }
-    else if(salaryFrom > 0 && salaryTo > 0){
-      return empl.salary >= salaryFrom && empl.salary <= salaryTo;
+
+    return { message: res, id };
+  }
+  removeEmployee(id) {
+    let res = false;
+    if (this.#employees[id]) {
+      res = true;
+      delete this.#employees[id]
     }
-    else if(salaryFrom <= 0){
-      return empl.salary <= salaryTo;
+  }
+  getEmployeesCountry(country) {
+    return Object.values(this.#employees)
+      .filter(empl => empl.address.country === country);
+  }
+  getEmployeesByAge(age) {
+
+    const currentYear = new Date().getFullYear();
+    return Object.values(this.#employees)
+      .filter(empl => currentYear - empl.birthYear === age);
+  }
+  getEmployeesBySalaries(salaryFrom, salaryTo) {
+    if (salaryTo < 0) {
+      salaryTo = Number.MAX_VALUE
     }
-    else if(salaryTo <= 0){
-      return empl.salary >= salaryFrom;
-    }
-  })
- }
-}  
+    return Object.values(this.#employees)
+      .filter(empl => empl.salary >= salaryFrom && empl.salary <= salaryTo);
+
+  }
+  #getId() {
+    let id = 0;
+    do {
+      id = getRandomNumber(employeeConfig.minId, employeeConfig.maxId + 1);
+    } while (this.#employees[id]);
+    return id;
+  }
+  getAllEmployees() {
+    return Object.values(this.#employees);
+  }
+}
+function checkEmployeeData(employee) {
+  let resStr = '';
+  if (employee.salary < employeeConfig.minSalary ||
+    employee.salary > employeeConfig.maxSalary) {
+    resStr = `salary must be in the range [${employeeConfig.minSalary}-${employeeConfig.maxSalary}]; `
+  }
+  if (employee.birthYear < employeeConfig.minYear ||
+    employee.birthYear > employeeConfig.maxYear) {
+    resStr += `birth year must be in the range [${employeeConfig.minYear}-${employeeConfig.maxYear}]`
+  }
+  return resStr;
+}

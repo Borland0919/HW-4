@@ -1,15 +1,32 @@
-import { Company, createEmployee } from "./service/company.js";
+import { Company,createEmployee } from "./service/company.js";
 import { EmployeeForm } from "./ul/employee-form.js";
-import { getRandomNumber } from "./utils/random.js";
+import { Table } from "./ul/table.js";
+import { event } from "./ul/tabs.js";
 
-const MIN_ID = 100000000;
-const MAX_ID = 999999999;
+const schema = [
+    {columnName: 'Employee ID', fieldName: 'id'},
+    {columnName: 'Name', fieldName: 'name'},
+    {columnName: "Birth Year", fieldName: 'birthYear'},
+    {columnName: "Salary (NIS)", fieldName: 'salary'},
+    {columnName: "Country", fieldName: 'country'},
+    {columnName: "City", fieldName: 'city'}
+]
+event();
 const company = new Company();
 const employeeForm = new EmployeeForm("form-section");
-function addEmplpoyee(employeeData){
-  const id = getRandomNumber(MIN_ID, MAX_ID);
-  const employee = createEmployee(id,employeeData.name, +employeeData.birthYear, +employeeData.salary, 
-                                                     employeeData.city, employeeData.country);
-    company.addEmplpoyee(employee);                                                                 
+const tableEmployees = new Table("table-section", "Employees", schema);
+function addEmployee(employeeData) {
+   
+    const employee = createEmployee(employeeData.name,
+        +employeeData.birthYear, +employeeData.salary,
+        employeeData.city, employeeData.country);
+        const res = company.addEmployee(employee);
+        if (!res.message) {
+            employeeData.id = res.id;
+            tableEmployees.addRow(employeeData);
+        }
+        return res.message
+    
 }
-employeeForm.addFormHandler(addEmplpoyee);
+employeeForm.addFormHandler(addEmployee)
+
