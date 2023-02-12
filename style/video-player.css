@@ -1,0 +1,36 @@
+.video 
+{
+    display: none;
+    justify-content: center; 
+    margin: 0 auto;
+    text-align: center;
+}
+
+.field
+{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    justify-content: center; 
+    display: flex;
+}
+
+#video-play{
+    margin-right: 2vw;
+    margin-left: 2vw;
+    width: 196px;
+}
+
+.select-video-form{
+    width: 8vw;
+    height: 4.2vh;
+}
+
+.result{
+    display: block;
+    justify-content: center; 
+    margin: 0 auto;
+    text-align: center; 
+    margin-top: 3vh;
+    size: 150%;
+    color: aliceblue;
+}
